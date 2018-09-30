@@ -9,9 +9,6 @@
 
 
 # echos the local header files included in given c file
-
-# TODO: fix the grep command so that "#include" is
-# filtered out here and not in each for loop below
 function rDepends () {
 	returnValue=$(grep -s -i "#include \"" $1)
 	echo $returnValue
@@ -36,8 +33,6 @@ echo -e -n "CFLAGS = -Wall -g\nLDFLAGS = -g\n\n" >> Makefile
 # the main funciton. Note: the script does not work if there
 # are multiple files with main functions, or non .c files with
 # the string "int main()" in them, or if main takes arguments
-
-# TODO: fix this issue
 MAINFILE=$(grep -l -e "int main()" *)
 name=$(echo $MAINFILE | cut -f 1 -d '.')
 echo -e -n "$name: " >> Makefile
